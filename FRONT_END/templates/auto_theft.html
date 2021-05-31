@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Crime In India</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src = "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            body {
+                background: url("https://americanlegionpost240.org/wp-content/uploads/2019/02/pale-blue-background-for-header.png") no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" style="font-size: 22px ;padding: 15px;">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAk1BMVEX///8GFjoAFDkAADIAACIAACUAAC8AACsAACgAACQAEDcAADAAACAFFToAACoAACEACDTu7/EAAB0AABrn6Ov4+foABzSws7uHi5cAADS7vcTGyM5TWWyeoavZ2t7P0dZrcH+nqrNdYnQcJ0YjLUpGTWIsNVCSlaAWI0MAAABma3ve4ON/g5A0PFVOVGl0eYc9RFsLnBfcAAAI2klEQVR4nO2daXuqPBCGZZPNDQvag1bUau0r2vb//7q3rkVJMgEyAb1yfz2HmrmAmWeWhFZLoVAoFAqFQqFQKBQKhUKhUCgUCoVCoVA8IbPxYhGHda8CjeTbcHu27bj7uO6loDD+6Pu6dqDrvXzXvRrxTN4tT/vDWda9IMFEy07Wvl/ct7rXJJSxY2j3mM/kb747es5Azd/WvSxhBCs7b5+meYO6FyaK2WBAMlDTvbpXJoik7xEN1PQnuYepTTFQ04261yaEYEAz8NfCqO7VCSDSyO/g0UL/GSzc58Pgn4XtJ7Dwx6cb+BQWLolx8MrjWzh3mAY+voUbl23gw1u4GAIGPrqFcQcy8ME9zcwlZBN3Fj50PAypWu1JLIw02MCmqbbJrsj//hjBBjZKeQebz/+KlP/WLCnzZ+EIbcEFmW2H9mBV4II5W8pcLWxIBhyvTaOrOQv+K14tLgMbYmG8cg/pj27zX7IAA+EZT8NbN/diL0Vce8N9zYTXQM37RFw6F+NP5+zz9V7Ae1HYAyP91cIi7zYCk9VfEd7nDhWRzhEILxZ+YK4fYvZjZpb6wl2d/mHk9DkLfzAtYBNsh9nyisHdRAFS3lsGX5g2MNn0biO2mXBeyBsnTozq6j4l786tsxisOa/kjhMnjDmmGVSi71yJ2uUUbMlLt5CF/P5LJGOjfb9MXqce2txx4kS7BgujrZlfJadgiz7548TZQn4ZIYpkRMgJ9H98F/PlE1ls6U3g3ZB0FzgF23evqIGaXUDNiyD8IMYy3eESbAuzsIGaI3fiJDbJLRQ+h1fUjZ4snGAblWVDarT/0u3wCLbQL+plDli8QkIES5oY4RNsK3oLjYE7wzbrSrBv01bR4VnFkno5k760aZPUp1bGuARbMTX6x1BWMXHi0F8il8MZxGB/goItycJ4SBdbPHWG1Coo1q5/XFKZZsy6A84YvL5IUn9n4V6CeUCHiGdo6auwWLvAnZRVIn5hrYFDsO2ANi8DKQnwhN0CM0FXADcJ6fgSZmhTQq6UAc7fSnuZ45/HT56CEdtJWGBEfi/rZQ5ISC0ArQULtmlpL3MAP7WAtBYo2DYltcwZdOENrQ905pN+iYwpg5viGpgMgfVZgGALqniZX7p8qXVpwEY7WGHbl8qYMjioBra2UMIDCbbvIvV7El4X1cC4D/0+0J8dVwj151/A7ct4UCADBFulUH8Ct6a/Ax8xiy3YVlVC/Yn2K6KBITQ0CAk28C3mAFXSTME2pssUbAvoLeYBs5aYgGUHg7lfR8BLqOFW2r7ASDZk/nolvf1nIV6VJgEL8AOmI68cCY/oOp6FU3Cqjllhqx4JjyCGw4BZuDj+OGsKJIAnY7lArGG8gQ8ZU7BVlqNnEMMh6CeYY5+74m1CMnjhcAJGe1ZrdlK2vp0DL/9dQn5GZxTbA0NIoDiA1paJwMoDS7BVK8zcMEQysDWBKrisluhbtcJMFry5xB10FxiCDRbs/ODlTnvoRTLpgu1D2EtYaCS3GJEL1J8YFbZXUYHiAFqxNIHeJJMq2BJQCxXBxColLgBBQxdsXLtguMHbLgM5GrpgKzmNQAGvOwqkhh51F4ugjOICnisF5gepgi1oi8kowB+qjMFcKH3L45pnp1YBoJZBaQJgbzVNsC3EiZkTQ6yeRche6Qvld0MhpacMUEW9PClTd1EF24/gZxQxwZ8xLaQJNoGC+wyeo2FKGtoGD5GC+wyao2FbSBNsP4IqMxnwmqMsC2mC7a38TBD1p96xDGS+hxTBFooVM0cQG2spvdxNmxQUHesPILadGPGQ4t6Ex/oDfbymTEBNYikVtgDhGUXdhx/5NHFCEWxwp7EEqEOJOs1Cckt0XGKfCAzqbiBaMYks2CLBOdMZ1F0IW8pTR55hm4srAGfAPQ7jlVyLIAs2/p31hcCdDaZUosgt0cIbCvnAnSslyzayYHsV0s3Ow7WTqjQBsTtGFGyhiJESAtgnKZCqnmTBhiHXDmDvb54SUiFifIrFZ4Un8HLDExuCMzUJ/y8S1wu9RUceKyX1D4kzAzuhJe4M/CdQlCTIN59Imw5mZrUZbjocW6kqkhvFIKajCJWLi4W4090tQm/mhdDnGmO5GW0wxTawFd+9iCTBFoEjxKXpoT+kreBO1ZAEG5aa+eVFwr7R9c0rRmrkhdBWjPJI2ZF3O9dmEZ6aJUZif/45GccopNmciCTYkJKmA5LOEcwmRSTBJmAOn4aMTZWtG+FGqrAtxNe4r7Cnq4WRKQsTBBtSbeaIpN3b2bkoNy8w0ASpxn1aUXWupQx/nvs3hFbaFXlnzl4nvQkVNloxTgQST746T9ESBNtM6GjXLd2hvC/nnCeh+3nBhpdTSMgMsxyrNQTPNkGp4p/hPptQBJuDryEMQCIGe0nHYFw4THsTjvUYYzQLL3Rk3sJW69vXennBJmbLFhnZR3mmJuHId0y9JvsW/sY9Ky/Y/iHewhF+9eKO9L+cYHsTOcd9R7eDfIACgZxEjP7hSW6t3YTvOWLeQh1xwyg/mLfQknzKJRHMW8jedSsLvBKp1iUVnaWDGQsd+afpEkCUM814RmM8RVrgqwOYgFvaytPB71RwkOAVgZ1ajiXPAR9CUBa/vq8DZAmhXYmlKfQBHkQos2DV8UaN8DKtiHIOdGX0YRNC/S/RCuc19OQe2M0iYHzwtTyDtrzTrEGCT/F3sb1q1KfTg5XgYVm9X9cnVqishWZPI/zBoOIQP2FfDt1aN+oJvTB2BPkbQ1qfsCjhj4i9ol5/2owwT+TN8SvqN89aNSYIEgm2ZpW44VnvDfQwd8y+hoOS93Hgrppv34HZtF9GifvmutnPZ5Z05zrsswnu0EdOZ94gjcZDvLV5jdQNx14+xuN5SzSe+65teMyX0jNs15jHTajZl2O2mO9dy24bnqdrGVO7mu6N2j2rs5ovHuzhJBAli9f5Xjdsx3Fd03Qt17Wc9uB9+jpOGhzaSxCEYZikaZrM0jB83MdSoVAoFAqFQqFQKBQKhUKhUCgUCoVCoXh2/gduBpJiBXsgOwAAAABJRU5ErkJggg==" alt="Logo" style="width:40px;">
+                </a>
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">ANALYSE.COM</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li class="dropdown active"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> Crime Analysis <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="list-group-item"><a href="all">State Wise</a></li>
+                        <li class="list-group-item active"><a href="auto_theft">Automobile Thefts</a></li>
+                        <li class="list-group-item"><a href="serious_fraud">Serious Frauds</a></li>
+                        <li class="list-group-item"><a href="murder_victim_age_sex">Murder Crimes</a></li>
+                        <li class="list-group-item"><a href="crime_against_women">CASES IN CRIME AGAINST WOMEN</a></li>
+                        <li class="list-group-item"><a href="arrestsIn_crime_against_women">ARRESTS IN CRIME AGAINST WOMEN</a></li>
+                        <li class="list-group-item"><a href="rape_cases">ANALYSIS OF RAPE CASES</a></li>
+                        <li class="list-group-item"><a href="trial_of_violent_crimes2">TRIAL OF VIOLENT CRIMES BY COURTS</a></li>
+                        <li class="list-group-item"><a href="period_of_trials2">PERIOD OF TRIALS BY COURTS</a></li>
+                    </ul>
+                    </li>
+                    <li><a href="about">About</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="login"><span class="glyphicon glyphicon-plus"></span> Add Data</a></li>                </ul>
+            </div>
+        </nav>
+        <br><br><br><br><br>
+        <h1>Crime related to Automobile theft</h1>
+        <br>
+        <div class="container">
+            <form action="/auto_theft" method="post">
+                <label for="states">Choose a state for state-wise details:</label>
+                <select id ="singleselect" name="states" id="states">
+                    <option value="Andaman & Nicobar Islands">Andaman & Nicobar Islands</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Dadra & Nagar Haveli">Dadra & Nagar Haveli</option>
+                    <option value="Daman & Diu">Daman & Diu</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Puducherry">Puducherry</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                </select>
+                <input type="submit" class="btn btn-primary btn" value="Submit">
+            </form>
+            <br>
+            <form action="/auto_theft" method="post">
+                <label for="states">Choose states,year,type for comparison:</label>
+                <select id ="mltislct1" name="compare_area" multiple = "multiple" required>
+                    <!-- <option value="ALL">ALL</option> -->
+                    <option value="Andaman & Nicobar Islands">Andaman & Nicobar Islands</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Dadra & Nagar Haveli">Dadra & Nagar Haveli</option>
+                    <option value="Daman & Diu">Daman & Diu</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Lakshadweep">Lakshadweep</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Puducherry">Puducherry</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                </select>
+                <select id ="mltislct2" name="compare_year" multiple = "multiple" required>
+                    <!-- <option value="ALL">ALL</option> -->
+                    <option value="2001">2001</option>
+                    <option value="2002">2002</option>
+                    <option value="2003">2003</option>
+                    <option value="2004">2004</option>
+                    <option value="2005">2005</option>
+                    <option value="2006">2006</option>
+                    <option value="2007">2007</option>
+                    <option value="2008">2008</option>
+                    <option value="2009">2009</option>
+                    <option value="2010">2010</option>
+                </select>
+                <select id ="mltislct3" name="compare_type" multiple = "multiple" required>
+                    <!-- <option value="ALL">ALL</option> -->
+                    <option value="Motor Cycles/ Scooters">Motor Cycles/ Scooters</option>
+                    <option value="Motor Car/Taxi/Jeep">Motor Car/Taxi/Jeep</option>
+                    <option value="Buses">Buses</option>
+                    <option value="Goods carrying vehicles (Trucks/Tempo etc)">Goods carrying vehicles (Trucks/Tempo etc)</option>
+                    <option value="Other Motor vehicles">Other Motor vehicles</option>
+                </select>
+                <input type="submit" class="btn btn-primary btn" value="Submit">
+            </form>
+        </div>
+        <br><br>
+        {% if state %}
+        {% for (r,s) in [(0,'Automobiles which have been TRACED'),(1,'Automobiles which have been RECOVERED'),(2,'Automobiles which have been STOLEN')]%}
+        
+        
+        <div style="margin-top: 25px; margin-bottom: 25px;">
+            <canvas id="{{r}}" width="700" height="500" class="container" style="background-color: white;"></canvas>
+            <script>
+                function getRandomColor() {
+                var letters = '0123456789ABCDEF'.split('');
+                    var color = '#';
+                    for (var i = 0; i < 6; i++ ) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }
+                list = {{x_data|safe}};
+                var ds = []
+                group_types = {{group_types|safe}};
+                for(var i=0; i<group_types.length; i++){
+                    ds.push({label:group_types[i],data:list[i][{{r}}],borderWidth: 3,borderColor: getRandomColor()});
+                }
+                var ctx = document.getElementById('{{r}}').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: {{y_data|safe}},
+                        datasets: ds
+                    },
+                    options: {
+                        responsive: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '{{s}}',
+                                font: {
+                                    size: 30
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
+        {% endfor %}
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th colspan="5" style="text-align: center;" class="warning"><h1>{{ state }} : Automobile Thefting Details</h1></th>
+                    </tr>
+                    <tr class="success">
+                        <th>Year</th>
+                        <th>Automobile TYPE</th>
+                        <th># Automobiles which have been TRACED</th>
+                        <th># Automobiles which have been RECOVERED</th>
+                        <th># Automobiles which have been STOLEN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in result1 %}
+                        <tr>
+                            <td>{{r[1]}}</td>
+                            <td>{{r[2]}}</td>
+                            <td>{{r[3]}}</td>
+                            <td>{{r[4]}}</td>
+                            <td>{{r[5]}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <br><br>
+
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th colspan="5" style="text-align: center;" class="warning"><h1>{{ state }}: TOTAL in Year</h1></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <tr class="success">
+                            <th>Year</th>
+                            <th># Automobiles which have been TRACED</th>
+                            <th># Automobiles which have been RECOVERED</th>
+                            <th># Automobiles which have been STOLEN</th>
+                        </tr>
+                    </tr>
+                </tbody>
+                {% for r in result2 %}
+                    <tr>
+                        <td>{{r[0]}}</td>
+                        <td>{{r[1]}}</td>
+                        <td>{{r[2]}}</td>
+                        <td>{{r[3]}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <br><br>
+
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                    <th colspan="5" style="text-align: center;" class="warning"><h1>{{ state }}: TOTAL Across Year</h1></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="success">
+                        <th>Automobile Type</th>
+                        <th># Automobiles which have been TRACED</th>
+                        <th># Automobiles which have been RECOVERED</th>
+                        <th># Automobiles which have been STOLEN</th>
+                    </tr>
+                    {% for r in result3 %}
+                        <tr>
+                            <td>{{r[0]}}</td>
+                            <td>{{r[1]}}</td>
+                            <td>{{r[2]}}</td>
+                            <td>{{r[3]}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% elif compare_area%}
+        {% for t in compare_type%}
+        <!-- <h1>{{t}}</h1> -->
+        <div style="margin-top: 25px; margin-bottom: 25px;">
+            <canvas id="{{t}}" width="700" height="500" class="container" style="background-color: white;"></canvas>
+            <script>
+                function getRandomColor() {
+                var letters = '0123456789ABCDEF'.split('');
+                    var color = '#';
+                    for (var i = 0; i < 6; i++ ) {
+                        color += letters[Math.floor(Math.random() * 16)];
+                    }
+                    return color;
+                }
+                list = {{x_data|safe}};
+                var ds = []
+                areas = {{compare_area|safe}};
+                for(var i=0; i<areas.length; i++){
+                    ds.push({label:areas[i],data:list[i][{{loop.index0}}],borderWidth: 3,borderColor: getRandomColor()});
+                }
+                var ctx = document.getElementById('{{t}}').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: {{y_data|safe}},
+                        datasets: ds
+                    },
+                    options: {
+                        responsive: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '# {{t}} STOLEN',
+                                font: {size: 30,}
+                            }
+                        }
+                    }
+                });
+            </script>
+        </div>
+        {% endfor %}
+            <table class="table table-striped table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th colspan="6" style="text-align: center;" class="warning">
+                            <h1>
+                            {% for area in compare_area %}
+                                | {{area}} |
+                            {% endfor %}
+                            </h1>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="success">
+                        <th>State</th>
+                        <th>Year</th>
+                        <th>Automobile TYPE</th>
+                        <th># Automobiles which have been TRACED</th>
+                        <th># Automobiles which have been RECOVERED</th>
+                        <th># Automobiles which have been STOLEN</th>
+                    </tr>
+
+                    {% for r in result %}
+                        <tr>
+                            <td>{{r[0]}}</td>
+                            <td>{{r[1]}}</td>
+                            <td>{{r[2]}}</td>
+                            <td>{{r[3]}}</td>
+                            <td>{{r[4]}}</td>
+                            <td>{{r[5]}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        <script>
+            $(document).ready(function() {
+                $('#mltislct1').multiselect();
+            });
+            $(document).ready(function() {
+                $('#mltislct2').multiselect();
+            });
+            $(document).ready(function() {
+                $('#mltislct3').multiselect();
+            });
+            $(document).ready(function() {
+                $('#singleselect').multiselect();
+            });
+        </script>
+    </body>
+</html>

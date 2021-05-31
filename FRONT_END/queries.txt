@@ -1,0 +1,12 @@
+auto_theft
+1. No of cases over the years in any particular state 
+2. Distribution across various states of any particular type of automobile
+3. No of cases in a particular year across various states
+DONE
+
+serious_frauds
+1. No of cases over the years in any particular state 
+2. Distribution across various states of any particular type of frauds
+3. No of cases in a particular year across various states
+DONE
+
