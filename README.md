@@ -9,5 +9,5 @@ Its runs on PostgrsSQL.
 
 ## Few samples 
 
-<img src = "/readme_assets/a.png" />
+<img src = "/readme_assets/1.png" />
 
