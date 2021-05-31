@@ -6,3 +6,8 @@ The data base is /data/*.csv
 
 To run the application we need to install few dependencies mentioned in setup_front_end.sh. 
 Its runs on PostgrsSQL.
+
+## Few samples 
+
+<img src = "/readme_assets/a.png" />
+
