@@ -11,3 +11,26 @@ Its runs on PostgrsSQL.
 
 <img src = "/readme_assets/1.png" />
 
+<img src = "/readme_assets/2.png" />
+
+<img src = "/readme_assets/3.png" />
+
+<img src = "/readme_assets/4.png" />
+
+<img src = "/readme_assets/5.png" />
+
+<img src = "/readme_assets/6.png" />
+
+<img src = "/readme_assets/7.png" />
+
+<img src = "/readme_assets/8.png" />
+
+<img src = "/readme_assets/9.png" />
+
+<img src = "/readme_assets/10.png" />
+
+<img src = "/readme_assets/11.png" />
+
+<img src = "/readme_assets/12.png" />
+
+
